@@ -8,7 +8,9 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 })
 io.on('connection', function (socket) {
-  console.log('connected')
+  socket.on('message', function (msg) {
+    console.log('message: ' + msg)
+  })
 })
 
 http.listen(PORT, function () {
