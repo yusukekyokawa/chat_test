@@ -7,6 +7,9 @@ var bodyParser = require('body-parser')
 var app = express()
 
 app.use(morgan('combined'))
+app.use('static',
+  express.static(path.join(__dirname, 'static')));
+
 app.use(bodyParser.urlencoded({extend: false}))
 
 app.set('views', path.join(__dirname, 'templates'))
