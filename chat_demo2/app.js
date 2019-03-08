@@ -17,12 +17,12 @@ io.sockets.on('connection', function (socket) {
   socket.on('connected', function (name) {
     var msg = name + 'が入室しました。'
     userHash[socket.id] = name
-    io.socket.emit('publish', {value: msg})
+    io.sockets.emit('publish', {value: msg})
   })
 
   // メッセージ送信カスタムイベント
   socket.on('publish', function (data) {
-    io.socket.emit('publish', {value: data.value})
+    io.sockets.emit('publish', {value: data.value})
   })
 
   // 接続終了時組み込みイベント(接続元ユーザを削除し、他ユーザへ通知)
@@ -30,7 +30,7 @@ io.sockets.on('connection', function (socket) {
     if (userHash[socket.id]) {
       var msg = userHash[socket.id] + 'が退出しました'
       delete userHash[socket.id]
-      io.socket.emit('publish', {value: msg})
+      io.sockets.emit('publish', {value: msg})
     }
   });
 });
