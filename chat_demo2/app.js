@@ -12,7 +12,7 @@ var io = require('socket.io').listen(server)
 var userHash = {}
 
 // イベントの定義
-io.socket.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
   // 接続開始カスタムイベント(接続元ユーザを保持し、他ユーザへ通知)
   socket.on('connected', function (name) {
     var msg = name + 'が入室しました。'
